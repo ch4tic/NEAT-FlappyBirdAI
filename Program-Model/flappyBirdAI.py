@@ -8,6 +8,9 @@ import random
 import time 
 import neat 
 
+# Author: ch4tic 
+# Date: 3.07.2020 
+
 gen = 0 
 pygame.font.init() # initializing the font for the score 
 HEIGHT = 800 # height of the screen  
