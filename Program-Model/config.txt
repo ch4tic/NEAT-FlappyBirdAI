@@ -1,4 +1,6 @@
 [NEAT]
+
+
 fitness_criterion     = max
 fitness_threshold     = 100
 pop_size              = 20
