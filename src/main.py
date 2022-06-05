@@ -8,18 +8,17 @@ import random
 import time 
 import neat 
 
-# Author: ch4tic 
-# Date: 3.07.2020 
 
 gen = 0 
 pygame.font.init() # initializing the font for the score 
 HEIGHT = 800 # height of the screen  
 WIDTH = 500 # width of the screen 
-BIRD_IMGS = [pygame.transform.scale2x(pygame.image.load(os.path.join('imgs', 'bird1.png'))),pygame.transform.scale2x(pygame.image.load(os.path.join('imgs', 'bird2.png'))),pygame.transform.scale2x(pygame.image.load(os.path.join('imgs', 'bird3.png'))) ] # loading bird images 
-PIPE_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join('imgs', 'pipe.png'))) # pipe image load 
-BASE_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join('imgs', 'base.png'))) # ground image load 
-BACKGROUND_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join('imgs', 'bg.png'))) # background image load 
+BIRD_IMGS = [pygame.transform.scale2x(pygame.image.load(os.path.join('../imgs', 'bird1.png'))),pygame.transform.scale2x(pygame.image.load(os.path.join('../imgs', 'bird2.png'))),pygame.transform.scale2x(pygame.image.load(os.path.join('../imgs', 'bird3.png'))) ] # loading bird images 
+PIPE_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join('../imgs', 'pipe.png'))) # pipe image load 
+BASE_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join('../imgs', 'base.png'))) # ground image load 
+BACKGROUND_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join('../imgs', 'bg.png'))) # background image load 
 FONT = pygame.font.SysFont('comicsansms', 30) # setting the score font, comicsansms 
+
 class Bird(): 
 	IMGS = BIRD_IMGS # bird images 
 	MAX_ROTATION = 25 # maximum bird tilt 
@@ -39,7 +38,8 @@ class Bird():
 		self.velocity = -10.5
 		self.tick_count = 0 
 		self.height = self.y 
-	# function for moving the bird and keeping track of its placement 
+
+        # function for moving the bird and keeping track of its placement 
 	def move(self): 
 		self.tick_count += 1 
 		displacement = self.velocity * self.tick_count + 1.5 * self.tick_count ** 2 # this variable keeps track of where we change the direction
@@ -54,7 +54,8 @@ class Bird():
 		else: 
 			if self.tilt > -90: 
 				self.tilt -= self.ROT_VEL
-	def draw(self, window): 
+	
+        def draw(self, window): 
 		self.img_count += 1 # keeping track of the animation  
 		# ---- ANIMATING THE BIRD ----
 		if self.img_count < self.ANIMATION_TIME: 
@@ -75,7 +76,8 @@ class Bird():
 		rotated_image = pygame.transform.rotate(self.img, self.tilt)
 		new_rect = rotated_image.get_rect(center=self.img.get_rect(topleft=(self.x, self.y)).center)
 		window.blit(rotated_image, new_rect.topleft)
-	def get_mask(self): 
+	
+        def get_mask(self): 
 		return pygame.mask.from_surface(self.img)
 
 class Pipe(): 
